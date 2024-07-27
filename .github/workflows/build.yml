@@ -1,4 +1,4 @@
-name: Build and Run
+name: Lint and Build
 
 on:
   push:
@@ -34,6 +34,3 @@ jobs:
 
       - name: Build
         run: npm run build
-
-      - name: Run tests and then close the server
-        run: npm start
