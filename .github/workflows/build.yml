@@ -8,7 +8,6 @@ on:
 
 jobs:
   run-tests:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,25 +15,25 @@ jobs:
         node-version: [20.x]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-    - name: NPM or Yarn install with caching
-      uses: bahmutov/npm-install@v1.6.0
+      - name: NPM or Yarn install with caching
+        uses: bahmutov/npm-install@v1.6.0
 
-    - name: Lint
-      run: npm run lint
+      - name: Lint
+        run: npm run lint
 
-    - name: Format
-      run: npm run format
+      - name: Format
+        run: npm run format
 
-    - name: Build
-      run: npm run build
+      - name: Build
+        run: npm run build
 
-    - name: Run tests and then close the server
-      run: npm start
+      - name: Run tests and then close the server
+        run: npm start
