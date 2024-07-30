@@ -1,0 +1,16 @@
+.input {
+  @apply grow bg-main-blue-950;
+  width: 50%;
+  margin-bottom: 0.2rem;
+  color: white;
+}
+
+.label {
+  @apply input flex items-center gap-2 text-main-blue-50;
+  color: rgb(140, 219, 229);
+}
+
+.errorMessage {
+  @apply text-red-500;
+  font-size: smaller;
+}
