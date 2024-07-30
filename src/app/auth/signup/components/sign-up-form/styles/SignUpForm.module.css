@@ -1,0 +1,18 @@
+.form {
+  @apply place-items-center;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+}
+
+.submitButton {
+  @apply btn btn-wide bg-main-blue-700 text-white hover:bg-main-blue-800;
+}
+
+.optionalTitle {
+  font-size: large;
+  padding: 0.5rem;
+}
+.signUptitle {
+  font-size: xx-large;
+}
