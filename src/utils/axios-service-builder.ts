@@ -32,6 +32,8 @@ class AxiosServiceBuilder implements IAxiosServiceBuilder {
       baseURL: this.ApiBaseUrl,
     });
 
+    axiosInstance.defaults.headers['Content-Type'] = 'application/json';
+
     if (this.AccessToken) {
       axiosInstance.interceptors.request.use((config) => {
         config.headers[REQUEST_HEADER_AUTH_KEY] = `${TOKEN_TYPE} ${this.AccessToken}`;
