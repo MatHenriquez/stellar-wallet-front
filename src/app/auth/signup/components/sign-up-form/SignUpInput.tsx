@@ -36,19 +36,24 @@ const SignUpInput = ({
   placeholder,
 }: SignUpInputProps) => {
   return (
-    <label className={styles.label}>
-      {icon}
-      {label + ':'}
-      <input
-        className={styles.input}
-        type={type}
-        name={name}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={value}
-        placeholder={placeholder}
-      />
-      <span className={styles.errorMessage}>{error && touched && error}</span>
+    <label className={styles.label} data-cy={`${name}-label`}>
+      <span className={styles.span} data-cy={`${name}-span`}>
+        {icon}
+        {label + ':'}
+        <input
+          className={styles.input}
+          type={type}
+          name={name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={value}
+          placeholder={placeholder}
+          data-cy={`${name}-input`}
+        />{' '}
+      </span>
+      <span className={styles.errorMessage} data-cy={`${name}-error`}>
+        {error && touched && error}
+      </span>
     </label>
   );
 };

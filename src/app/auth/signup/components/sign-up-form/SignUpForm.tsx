@@ -15,12 +15,22 @@ import { initialValues } from '../../utils/constants';
 const SignUpForm = () => {
   return (
     <>
-      <Toaster position='top-right' />
+      <Toaster position='top-right' data-cy='toast' />
       <Formik
         initialValues={initialValues}
         validationSchema={NewUserSchema}
         onSubmit={(values, { setSubmitting }) => {
           setSubmitting(true);
+          toast.promise(
+            new Promise<void>((resolve) => {
+              setTimeout(() => {
+                resolve();
+              }, 500);
+            }),
+            {
+              loading: 'Creating account...',
+            },
+          );
 
           const requestValues: CreateUserRequest = {
             name: values.name,
@@ -35,7 +45,6 @@ const SignUpForm = () => {
           }
 
           const requestPayload = new CreateUserRequest(requestValues);
-
           axiosInstance
             .post('/User', requestPayload)
             .then(() => {
@@ -48,19 +57,23 @@ const SignUpForm = () => {
             })
             .catch((error) => {
               console.error(error);
-              toast.error('Error creating account: ' + error.response?.data, {
+              toast.error('Error creating account.', {
                 style: {
                   background: 'red',
                   color: 'white',
                 },
               });
+            })
+            .finally(() => {
+              setSubmitting(false);
             });
-          setSubmitting(false);
         }}
       >
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-          <form className={styles.form} onSubmit={handleSubmit}>
-            <p className={styles.signUptitle}>Welcome!</p>
+          <form className={styles.form} onSubmit={handleSubmit} data-cy='signup-form'>
+            <p className={styles.signUptitle} data-cy='title'>
+              Welcome to Crippy!
+            </p>
             <SignUpInput
               type='text'
               name='name'
@@ -116,7 +129,9 @@ const SignUpForm = () => {
               label='Confirm Password'
               icon={KeyIcon}
             />
-            <p className={styles.optionalTitle}>Optional</p>
+            <p className={styles.optionalTitle} data-cy='optional-title'>
+              Optional (if you don&apos;t have Stellar keys, we will create one for you!)
+            </p>
             <SignUpInput
               type='text'
               name='publicKey'
@@ -129,7 +144,7 @@ const SignUpForm = () => {
               icon={KeyIcon}
             />
             <SignUpInput
-              type='text'
+              type='password'
               name='secretKey'
               handleChange={handleChange}
               handleBlur={handleBlur}
@@ -139,7 +154,12 @@ const SignUpForm = () => {
               label='Secret Key'
               icon={KeyIcon}
             />
-            <button type='submit' className={styles.submitButton} disabled={isSubmitting}>
+            <button
+              type='submit'
+              className={styles.submitButton}
+              disabled={isSubmitting}
+              data-cy='submit-button'
+            >
               Submit
             </button>
           </form>
