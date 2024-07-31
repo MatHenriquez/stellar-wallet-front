@@ -1,16 +1,43 @@
 .input {
-  @apply grow bg-main-blue-950;
+  @apply input-bordered input-info w-screen justify-between bg-main-blue-950;
   width: 50%;
-  margin-bottom: 0.2rem;
   color: white;
 }
 
 .label {
   @apply input flex items-center gap-2 text-main-blue-50;
   color: rgb(140, 219, 229);
+  width: 50%;
+  margin-bottom: 0.4rem;
 }
 
 .errorMessage {
   @apply text-red-500;
   font-size: smaller;
+}
+
+.span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .input {
+    height: 3.5rem;
+    width: 100%;
+  }
+
+  .errorMessage {
+    font-size: 0.7rem;
+  }
+
+  .label {
+    width: 97%;
+    margin-bottom: 0.1rem;
+  }
+
+  .span {
+    gap: 0.2rem;
+  }
 }
