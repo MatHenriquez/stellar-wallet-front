@@ -17,7 +17,6 @@
 }
 
 body {
-  @apply bg-main-blue-400;
-  background-image: linear-gradient(to right bottom, #87c7f2, #6db1e3, #529cd5, #3787c6, #1272b7);
+  background-image: linear-gradient(to right bottom, #136da8, #0b5e99, #072e4d, #0b395c, #1272b7);
   color: white;
 }
