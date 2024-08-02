@@ -1,0 +1,17 @@
+.form {
+  @apply place-items-center;
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  max-height: 100vh;
+}
+
+.signInTitle {
+  margin-bottom: 1.5rem;
+  font-size: xx-large;
+}
+
+.submitButton {
+  @apply btn btn-wide bg-main-blue-700 text-white hover:bg-main-blue-800;
+}
+
