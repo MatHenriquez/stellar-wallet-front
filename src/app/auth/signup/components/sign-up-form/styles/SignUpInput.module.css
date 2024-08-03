@@ -5,9 +5,9 @@
 }
 
 .label {
-  @apply input flex items-center gap-2 text-main-blue-50;
+  @apply input flex items-center gap-2;
   color: rgb(140, 219, 229);
-  width: 50%;
+  width: 80%;
   margin-bottom: 0.4rem;
 }
 
