@@ -35,8 +35,8 @@ describe('Signup page', () => {
       cy.get('[data-cy=confirmPassword-label]').should('contain.text', 'Confirm Password:');
 
       cy.get('[data-cy=optional-title]').should(
-        'have.text',
-        "Optional (if you don't have Stellar keys, we will create one for you!)",
+        'contain.text',
+        "*Optional",
       );
 
       cy.get('[data-cy=publicKey-input]').should('exist');

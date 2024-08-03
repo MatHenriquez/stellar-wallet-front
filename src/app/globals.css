@@ -17,6 +17,6 @@
 }
 
 body {
-  background-image: linear-gradient(to right bottom, #136da8, #0b5e99, #072e4d, #0b395c, #1272b7);
+  background-image: linear-gradient(to right bottom, #136da8, #0b5e99, #072e4d, #136da8, #1272b7);
   color: white;
 }

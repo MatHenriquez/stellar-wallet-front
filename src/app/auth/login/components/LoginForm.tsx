@@ -71,7 +71,7 @@ const LoginForm = () => {
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
           <form className={styles.form} onSubmit={handleSubmit} data-cy='login-form'>
             <p className={styles.signInTitle} data-cy='title'>
-              Welcome to Crippy!
+              Login
             </p>
             <SignUpInput
               type='email'
