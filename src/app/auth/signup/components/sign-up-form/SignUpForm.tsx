@@ -72,7 +72,7 @@ const SignUpForm = () => {
         {({ values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
           <form className={styles.form} onSubmit={handleSubmit} data-cy='signup-form'>
             <p className={styles.signUptitle} data-cy='title'>
-              Welcome to Crippy!
+              Register
             </p>
             <SignUpInput
               type='text'
@@ -130,7 +130,7 @@ const SignUpForm = () => {
               icon={KeyIcon}
             />
             <p className={styles.optionalTitle} data-cy='optional-title'>
-              Optional (if you don&apos;t have Stellar keys, we will create one for you!)
+              *Optional <span className={styles.optionalSubtitle}>(if you don&apos;t have Stellar keys, we will create them  for you!)</span>
             </p>
             <SignUpInput
               type='text'
