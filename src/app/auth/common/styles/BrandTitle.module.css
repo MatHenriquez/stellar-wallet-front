@@ -1,0 +1,62 @@
+.brandImage {
+  background-image: url('../../../../../public/landing-8.jpg');
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.6;
+  box-shadow: 0 0 20px 10px rgba(59, 105, 190, 0.795);
+}
+
+.title {
+  @apply rounded-md bg-main-blue-900 bg-opacity-95 bg-clip-padding opacity-90 backdrop-blur-lg backdrop-filter;
+  font-size: 4rem;
+  box-shadow: 0 0 10px 5px rgba(32, 142, 206, 0.514);
+  text-shadow: 0 10px 60px rgb(31, 13, 138);
+  padding: 1rem;
+  border-radius: 15px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgba(5, 5, 146, 0.219);
+  text-align: center;
+}
+
+.brandName {
+  color: rgb(14, 224, 252);
+  -webkit-text-stroke: 4px rgba(18, 4, 94, 0.877);
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  text-align: center;
+  color: white;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid white;
+}
+
+@media screen and (max-width: 640px) {
+    .brandImage {
+        background-image: none;
+        height: 10vh;
+        opacity: 1;
+    }
+
+    .title {
+        margin-top: 1rem;
+        font-size: 2rem;
+        border-width: 3px;
+    }
+
+    .brandName {
+        -webkit-text-stroke: 2px rgba(18, 4, 94, 0.877);
+      }
+    
+    .subtitle {
+        display: none;
+    }
+}
