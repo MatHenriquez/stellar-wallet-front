@@ -1,6 +1,6 @@
 describe('Signup page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/auth/login');
+    cy.visit('/auth/login');
   });
 
   describe('Form', () => {
@@ -57,7 +57,7 @@ describe('Signup page', () => {
       cy.get('[data-cy=password-input]').type('password');
       cy.get('[data-cy=submit-button]').click();
       cy.wait('@successfulLogin');
-      cy.url().should('eq', 'http://localhost:3000/home');
+      cy.url().should('include', '/home');
     });
 
     it('should not redirect to home page when form is submitted with invalid credentials', () => {
@@ -67,7 +67,14 @@ describe('Signup page', () => {
       cy.get('[data-cy=email-input]').type('invalid@email.com');
       cy.get('[data-cy=password-input]').type('password');
       cy.get('[data-cy=submit-button]').click();
-      cy.url().should('eq', 'http://localhost:3000/auth/login');
+      cy.url().should('include', '/auth/login');
+    });
+  });
+
+  describe('Signup link', () => {
+    it('should redirect to signup page when clicked', () => {
+      cy.get('[data-cy=signup-link]').click();
+      cy.url().should('include', '/auth/signup');
     });
   });
 });
