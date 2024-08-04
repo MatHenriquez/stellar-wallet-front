@@ -1,7 +1,7 @@
 describe('Brand', () => {
   describe('Register', () => {
     it('should display brand section', () => {
-      cy.visit('http://localhost:3000/auth/signup');
+      cy.visit('/auth/signup');
       it('should display brand section', () => {
         cy.get('[data-cy=brand-section]').should('exist');
         cy.get('[data-cy=brand-title]').should('exist').should('have.text', 'Welcome to Crippy!');
@@ -14,7 +14,7 @@ describe('Brand', () => {
   
   describe('Login', () => {
     it('should display brand section', () => {
-      cy.visit('http://localhost:3000/auth/login');
+      cy.visit('/auth/login');
       it('should display brand section', () => {
         cy.get('[data-cy=brand-section]').should('exist');
         cy.get('[data-cy=brand-title]').should('exist').should('have.text', 'Welcome to Crippy!');

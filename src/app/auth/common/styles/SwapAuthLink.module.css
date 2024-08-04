@@ -1,0 +1,10 @@
+.description {
+  @apply text-blue-text;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.link {
+  color: white;
+  text-decoration: underline;
+}

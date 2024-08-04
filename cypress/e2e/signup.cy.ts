@@ -1,6 +1,6 @@
 describe('Signup page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/auth/signup');
+    cy.visit('/auth/signup');
   });
 
   describe('User interface', () => {
@@ -16,6 +16,7 @@ describe('Signup page', () => {
       cy.get('[data-cy=publicKey-input]').should('exist');
       cy.get('[data-cy=secretKey-input]').should('exist');
       cy.get('[data-cy=submit-button]').should('exist');
+      cy.get('[data-cy=login-link]').should('exist');
     });
 
     it('should display the signup form with the correct fields', () => {
@@ -217,6 +218,13 @@ describe('Signup page', () => {
           .type('SDZX2C2A4CMPSACVZNXI63X2CWINPBZDKBPGI2CHNJ4KRLMZHLSD5DGZD')
           .blur();
         cy.get('[data-cy=secretKey-error]').should('exist').should('have.text', '*Too Long!');
+      });
+    });
+
+    describe('Login link', () => {
+      it('should redirect to login page when clicked', () => {
+        cy.get('[data-cy=login-link]').click();
+        cy.url().should('include', '/auth/login');
       });
     });
   });

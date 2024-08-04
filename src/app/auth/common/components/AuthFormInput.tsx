@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ChangeEvent } from 'react';
-import styles from './styles/SignUpInput.module.css';
+import styles from '../styles/AuthFormInput.module.css';
 
-type SignUpInputProps = {
+type AuthFormInputProps = {
   handleChange: {
     (e: ChangeEvent<any>): void;
     <T = string | ChangeEvent<any>>(
@@ -23,7 +23,7 @@ type SignUpInputProps = {
   placeholder?: string;
 };
 
-const SignUpInput = ({
+const AuthFormInput = ({
   handleChange,
   handleBlur,
   value,
@@ -34,7 +34,7 @@ const SignUpInput = ({
   icon,
   label,
   placeholder,
-}: SignUpInputProps) => {
+}: AuthFormInputProps) => {
   return (
     <label className={styles.label} data-cy={`${name}-label`}>
       <span className={styles.span} data-cy={`${name}-span`}>
@@ -58,4 +58,4 @@ const SignUpInput = ({
   );
 };
 
-export default SignUpInput;
+export default AuthFormInput;

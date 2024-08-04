@@ -6,11 +6,6 @@
   max-height: 100vh;
 }
 
-.submitButton {
-  @apply btn btn-wide bg-main-blue-700 text-white hover:bg-main-blue-800;
-  border-color: white;
-}
-
 .optionalSubtitle {
   font-size: small;
 }

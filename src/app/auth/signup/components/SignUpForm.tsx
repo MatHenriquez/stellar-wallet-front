@@ -1,16 +1,18 @@
 'use client';
 import React from 'react';
 import { Formik } from 'formik';
-import styles from './styles/SignUpForm.module.css';
-import SignUpInput from './SignUpInput';
-import { NewUserSchema } from '../../utils/NewUserSchema';
-import { EmailIcon } from './icons/email';
-import { NameIcon } from './icons/names';
-import { KeyIcon } from './icons/key';
+import styles from '../styles/SignUpForm.module.css';
+import AuthFormInput from '../../common/components/AuthFormInput';
+import { NewUserSchema } from '../utils/NewUserSchema';
+import { EmailIcon } from '../../common/components/icons/email';
+import { NameIcon } from '../../common/components/icons/names';
+import { KeyIcon } from '../../common/components/icons/key';
 import axiosInstance from '@/services/axios-instance';
 import { Toaster, toast } from 'sonner';
-import { CreateUserRequest } from '../../utils/create-user-request';
-import { initialValues } from '../../utils/constants';
+import { CreateUserRequest } from '../utils/create-user-request';
+import { initialValues } from '../utils/constants';
+import SubmitButton from '../../common/components/SubmitButton';
+import SwapAuthLink from '../../common/components/SwapAuthLink';
 
 const SignUpForm = () => {
   return (
@@ -74,7 +76,13 @@ const SignUpForm = () => {
             <p className={styles.signUptitle} data-cy='title'>
               Register
             </p>
-            <SignUpInput
+            <SwapAuthLink
+              name='login'
+              link='/auth/login'
+              description='Already have an account?'
+              text='Login'
+            />
+            <AuthFormInput
               type='text'
               name='name'
               handleChange={handleChange}
@@ -85,7 +93,7 @@ const SignUpForm = () => {
               label='Name'
               icon={NameIcon}
             />
-            <SignUpInput
+            <AuthFormInput
               type='text'
               name='lastName'
               handleChange={handleChange}
@@ -96,7 +104,7 @@ const SignUpForm = () => {
               label='Surname'
               icon={NameIcon}
             />
-            <SignUpInput
+            <AuthFormInput
               type='email'
               name='email'
               handleChange={handleChange}
@@ -107,7 +115,7 @@ const SignUpForm = () => {
               label='Email'
               icon={EmailIcon}
             />
-            <SignUpInput
+            <AuthFormInput
               type='password'
               name='password'
               handleChange={handleChange}
@@ -118,7 +126,7 @@ const SignUpForm = () => {
               label='Password'
               icon={KeyIcon}
             />
-            <SignUpInput
+            <AuthFormInput
               type='password'
               name='confirmPassword'
               handleChange={handleChange}
@@ -130,9 +138,12 @@ const SignUpForm = () => {
               icon={KeyIcon}
             />
             <p className={styles.optionalTitle} data-cy='optional-title'>
-              *Optional <span className={styles.optionalSubtitle}>(if you don&apos;t have Stellar keys, we will create them  for you!)</span>
+              *Optional{' '}
+              <span className={styles.optionalSubtitle}>
+                (if you don&apos;t have Stellar keys, we will create them for you!)
+              </span>
             </p>
-            <SignUpInput
+            <AuthFormInput
               type='text'
               name='publicKey'
               handleChange={handleChange}
@@ -143,7 +154,7 @@ const SignUpForm = () => {
               label='Public Key'
               icon={KeyIcon}
             />
-            <SignUpInput
+            <AuthFormInput
               type='password'
               name='secretKey'
               handleChange={handleChange}
@@ -154,14 +165,7 @@ const SignUpForm = () => {
               label='Secret Key'
               icon={KeyIcon}
             />
-            <button
-              type='submit'
-              className={styles.submitButton}
-              disabled={isSubmitting}
-              data-cy='submit-button'
-            >
-              Submit
-            </button>
+            <SubmitButton isSubmitting={isSubmitting} />
           </form>
         )}
       </Formik>
