@@ -1,0 +1,11 @@
+.submitButton {
+  @apply btn bg-main-blue-700 text-white hover:bg-main-blue-800;
+  width: 10rem;
+  border-color: white;
+}
+
+@media screen and (max-width: 640px) {
+  .submitButton {
+    margin-top: 0.5rem;
+  }
+}
