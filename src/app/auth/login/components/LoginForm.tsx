@@ -6,11 +6,13 @@ import { toast, Toaster } from 'sonner';
 import { ILoginResponse, LoginInitialValues, LoginRequest } from '../utils/constants';
 import { LoginUserSchema } from '../utils/login-user-schema';
 import styles from '../styles/LoginForm.module.css';
-import SignUpInput from '../../signup/components/sign-up-form/SignUpInput';
-import { EmailIcon } from '../../signup/components/sign-up-form/icons/email';
-import { KeyIcon } from '../../signup/components/sign-up-form/icons/key';
+import AuthFormInput from '../../common/components/AuthFormInput';
+import { EmailIcon } from '../../common/components/icons/email';
+import { KeyIcon } from '../../common/components/icons/key';
 import axiosInstance from '@/services/axios-instance';
 import { useRouter } from 'next/navigation';
+import SubmitButton from '../../common/components/SubmitButton';
+import SwapAuthLink from '../../common/components/SwapAuthLink';
 
 const LoginForm = () => {
   const router = useRouter();
@@ -18,6 +20,7 @@ const LoginForm = () => {
   return (
     <>
       <Toaster position='top-right' />
+
       <Formik
         initialValues={LoginInitialValues}
         validationSchema={LoginUserSchema}
@@ -56,7 +59,7 @@ const LoginForm = () => {
             })
             .catch((error) => {
               console.error(error);
-              toast.error(error?.response.data ?? "Error loggin in...", {
+              toast.error(error?.response.data ?? 'Error loggin in...', {
                 style: {
                   background: 'red',
                   color: 'white',
@@ -73,7 +76,13 @@ const LoginForm = () => {
             <p className={styles.signInTitle} data-cy='title'>
               Login
             </p>
-            <SignUpInput
+            <SwapAuthLink 
+              name='signup'
+              link='/auth/signup'
+              description='Don’t have an account?'
+              text='Sign up'
+            />
+            <AuthFormInput
               type='email'
               name='email'
               handleChange={handleChange}
@@ -85,7 +94,7 @@ const LoginForm = () => {
               icon={EmailIcon}
             />
 
-            <SignUpInput
+            <AuthFormInput
               type='password'
               name='password'
               handleChange={handleChange}
@@ -96,14 +105,8 @@ const LoginForm = () => {
               label='Password'
               icon={KeyIcon}
             />
-            <button
-              type='submit'
-              className={styles.submitButton}
-              disabled={isSubmitting}
-              data-cy='submit-button'
-            >
-              Submit
-            </button>
+
+            <SubmitButton isSubmitting={isSubmitting} />
           </form>
         )}
       </Formik>
