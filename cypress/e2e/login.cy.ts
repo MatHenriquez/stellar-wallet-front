@@ -57,7 +57,7 @@ describe('Signup page', () => {
       cy.get('[data-cy=password-input]').type('password');
       cy.get('[data-cy=submit-button]').click();
       cy.wait('@successfulLogin');
-      cy.url().should('include', '/home');
+      cy.url().should('include', '/dashboard');
     });
 
     it('should not redirect to home page when form is submitted with invalid credentials', () => {
