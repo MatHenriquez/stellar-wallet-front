@@ -55,11 +55,11 @@ const LoginForm = () => {
               localStorage.setItem('ACCESS_TOKEN', responsePayload.token);
               localStorage.setItem('PUBLIC_KEY', responsePayload.publicKey);
 
-              router.push('/home');
+              router.push('/dashboard');
             })
             .catch((error) => {
               console.error(error);
-              toast.error(error?.response.data ?? 'Error loggin in...', {
+              toast.error(error?.response?.data ?? 'Error loggin in...', {
                 style: {
                   background: 'red',
                   color: 'white',
