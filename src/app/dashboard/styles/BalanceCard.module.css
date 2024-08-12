@@ -1,0 +1,19 @@
+.container {
+    @apply card w-80 h-44 bg-main-blue-950 opacity-90 hover:shadow-lg hover:shadow-main-blue-400;
+}
+
+.cardBody {
+    @apply card-body;
+}
+
+.cardTitle {
+    @apply card-title;
+}
+
+.cardAction {
+    @apply card-actions justify-end;
+}
+
+.cardButton {
+    @apply btn btn-primary bg-main-blue-400 hover:bg-main-blue-200 text-main-blue-950 font-bold border-main-blue-800
+}
