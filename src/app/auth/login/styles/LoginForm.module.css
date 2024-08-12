@@ -1,9 +1,19 @@
 .form {
-  @apply place-items-center;
+  @apply place-items-center rounded-md bg-clip-padding opacity-85 backdrop-blur-lg backdrop-filter;
+  background-color: black;
   display: flex;
   flex-direction: column;
   width: 75%;
   max-height: 100vh;
+  font-size: 4rem;
+  box-shadow: 0 0 10px 5px rgba(32, 142, 206, 0.514);
+  text-shadow: 0 10px 60px rgb(31, 13, 138);
+  padding: 1rem;
+  border-radius: 15px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: rgba(5, 5, 146, 0.219);
+  text-align: center;
 }
 
 .signInTitle {
