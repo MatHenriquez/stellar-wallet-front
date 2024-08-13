@@ -68,15 +68,15 @@ describe('Dashboard', () => {
 
     it('should display the balances', () => {
         cy.wait(1000)
-        cy.get('[data-cy=balance-card-BTC]').should('exist');
-        cy.get('[data-cy=balance-card-ETH]').should('exist');
+        cy.get('[data-cy=balance-card-btc]').should('exist');
+        cy.get('[data-cy=balance-card-eth]').should('exist');
     });
   });
 
   describe('Filter balances', () => {
     it('should filter balances in zero', () => {
       cy.get('[data-cy=filter-balances]').check();
-      cy.get('[data-cy=balance-card-BTC]').should('not.exist');
+      cy.get('[data-cy=balance-card-btc]').should('not.exist');
     });
   });
 
