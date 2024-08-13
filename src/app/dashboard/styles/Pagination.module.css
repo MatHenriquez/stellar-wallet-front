@@ -1,0 +1,11 @@
+.container {
+  @apply join;
+}
+
+.prevNextButton {
+  @apply btn join-item border-main-blue-700 bg-main-blue-400 text-main-blue-950;
+}
+
+.currentPage {
+  @apply btn join-item cursor-default border-main-blue-700 bg-main-blue-400 text-main-blue-950 hover:bg-main-blue-400;
+}
