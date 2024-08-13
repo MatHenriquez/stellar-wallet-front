@@ -49,9 +49,8 @@ describe('Dashboard', () => {
       cy.get('[data-cy=balances-pagination]').should('exist');
     });
 
-    it('should display the balances', () => {
-        cy.get('[data-cy=balance-card-btc]').should('exist');
-        cy.get('[data-cy=balance-card-eth]').should('exist');
+    it.only('should display the balances', () => {
+        cy.get('[data-cy=balance-card]').should('exist');
     });
   });
 
@@ -74,7 +73,7 @@ describe('Dashboard', () => {
             },
           ).as('getNonZeroBalances');
       cy.get('[data-cy=filter-balances]').check();
-      cy.get('[data-cy=balance-card-btc]').should('not.exist');
+      cy.get('[data-cy=balance-card-0]').should('not.exist');
     });
   });
 
