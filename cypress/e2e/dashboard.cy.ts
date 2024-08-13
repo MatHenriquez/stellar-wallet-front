@@ -75,11 +75,11 @@ describe('Dashboard', () => {
               body: {
                 balances: [
                   {
-                    asset: 'BTC',
+                    asset: 'usdc',
                     amount: '0.0000000',
                   },
                   {
-                    asset: 'ETH',
+                    asset: 'usdt',
                     amount: '0.0002000',
                   },
                 ],
@@ -87,8 +87,8 @@ describe('Dashboard', () => {
               },
             },
           ).as('getBalances');
-        cy.get('[data-cy=balance-card-btc]').should('exist');
-        cy.get('[data-cy=balance-card-eth]').should('exist');
+        cy.get('[data-cy=balance-card-usdc]').should('exist');
+        cy.get('[data-cy=balance-card-usdt]').should('exist');
     });
   });
 
