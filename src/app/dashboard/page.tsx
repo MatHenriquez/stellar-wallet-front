@@ -56,11 +56,11 @@ const Page = () => {
         )}
       </span>
       <div className={styles.balancesContainer}>
-        {balances.map((balance) =>
+        {balances.map((balance, index) =>
           isLoading ? (
-            <LoadingBalance key={balance.asset} />
+            <LoadingBalance key={balance.asset} data-cy={`balance-card-${index}`}/>
           ) : (
-            <BalanceCard key={balance.asset} asset={balance.asset} amount={balance.amount} />
+            <BalanceCard key={balance.asset} asset={balance.asset} amount={balance.amount} data-cy={`balance-card-${index}`}/>
           ),
         )}
       </div>
