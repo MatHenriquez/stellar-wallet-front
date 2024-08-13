@@ -67,6 +67,7 @@ describe('Dashboard', () => {
     });
 
     it('should display the balances', () => {
+        cy.wait(1000)
         cy.get('[data-cy=balance-card-BTC]').should('exist');
         cy.get('[data-cy=balance-card-ETH]').should('exist');
     });
