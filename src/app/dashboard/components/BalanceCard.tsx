@@ -4,7 +4,7 @@ import styles from '../styles/BalanceCard.module.css';
 
 const BalanceCard = ({ asset, amount }: IBalance) => {
   return (
-    <div className={styles.container} data-cy={`balance-card-${asset.toLowerCase()}`}>
+    <div className={styles.container} data-cy='balance-card'>
       <div className={styles.cardBody}>
         <h2 className={styles.cardTitle}>Asset: {asset == 'native' ? 'XLM' : asset}</h2>
         <p>Amount: {amount}</p>
