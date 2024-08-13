@@ -67,7 +67,27 @@ describe('Dashboard', () => {
     });
 
     it('should display the balances', () => {
-        cy.wait(1000);
+        cy.intercept(
+            'GET',
+            '/Transaction/Balance?PublicKey=null&FilterZeroBalances=false&PageNumber=1&PageSize=4',
+            {
+              statusCode: 200,
+              body: {
+                balances: [
+                  {
+                    asset: 'BTC',
+                    amount: '0.0000000',
+                  },
+                  {
+                    asset: 'ETH',
+                    amount: '0.0002000',
+                  },
+                ],
+                totalPages: 1,
+              },
+            },
+          ).as('getBalances');
+        cy.get('[data-cy=balance-card-btc]').should('exist');
         cy.get('[data-cy=balance-card-eth]').should('exist');
     });
   });
