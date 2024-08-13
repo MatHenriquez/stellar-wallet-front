@@ -1,14 +1,6 @@
 describe('Dashboard', () => {
   beforeEach(() => {
     cy.visit('/dashboard');
-    cy.intercept('POST', '/Auth/Login', {
-      statusCode: 200,
-      body: {
-        success: true,
-        token: 'token',
-        publicKey: 'publicKey',
-      },
-    }).as('successfulLogin');
 
     cy.intercept(
       'GET',
@@ -30,23 +22,6 @@ describe('Dashboard', () => {
         },
       },
     ).as('getBalances');
-
-    cy.intercept(
-      'GET',
-      '/Transaction/Balance?PublicKey=null&FilterZeroBalances=true&PageNumber=1&PageSize=4',
-      {
-        statusCode: 200,
-        body: {
-          balances: [
-            {
-              asset: 'ETH',
-              amount: '0.0002000',
-            },
-          ],
-          totalPages: 1,
-        },
-      },
-    ).as('getNonZeroBalances');
   });
 
   describe('Balances', () => {
@@ -67,26 +42,8 @@ describe('Dashboard', () => {
     });
 
     it('should display the balances', () => {
-        cy.intercept(
-            'GET',
-            '/Transaction/Balance?PublicKey=null&FilterZeroBalances=false&PageNumber=1&PageSize=4',
-            {
-              statusCode: 200,
-              body: {
-                balances: [
-                  {
-                    asset: 'BTC',
-                    amount: '0.0000000',
-                  },
-                  {
-                    asset: 'ETH',
-                    amount: '0.0002000',
-                  },
-                ],
-                totalPages: 1,
-              },
-            },
-          ).as('getBalances');
+        cy.wait('@getBalances');
+        cy.wait(5000);
         cy.get('[data-cy=balance-card-btc]').should('exist');
         cy.get('[data-cy=balance-card-eth]').should('exist');
     });
@@ -94,7 +51,25 @@ describe('Dashboard', () => {
 
   describe('Filter balances', () => {
     it('should filter balances in zero', () => {
+      cy.intercept(
+        'GET',
+        '/Transaction/Balance?PublicKey=null&FilterZeroBalances=true&PageNumber=1&PageSize=4',
+        {
+          statusCode: 200,
+          body: {
+            balances: [
+              {
+                asset: 'ETH',
+                amount: '0.0002000',
+              },
+            ],
+            totalPages: 1,
+          },
+        },
+      ).as('getNonZeroBalances');
+
       cy.get('[data-cy=filter-balances]').check();
+      cy.wait('@getNonZeroBalances');
       cy.get('[data-cy=balance-card-btc]').should('not.exist');
     });
   });
