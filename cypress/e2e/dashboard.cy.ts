@@ -30,23 +30,6 @@ describe('Dashboard', () => {
         },
       },
     ).as('getBalances');
-
-    cy.intercept(
-      'GET',
-      '/Transaction/Balance?PublicKey=null&FilterZeroBalances=true&PageNumber=1&PageSize=4',
-      {
-        statusCode: 200,
-        body: {
-          balances: [
-            {
-              asset: 'ETH',
-              amount: '0.0002000',
-            },
-          ],
-          totalPages: 1,
-        },
-      },
-    ).as('getNonZeroBalances');
   });
 
   describe('Balances', () => {
@@ -67,33 +50,29 @@ describe('Dashboard', () => {
     });
 
     it('should display the balances', () => {
+        cy.get('[data-cy=balance-card-btc]').should('exist');
+        cy.get('[data-cy=balance-card-eth]').should('exist');
+    });
+  });
+
+  describe('Filter balances', () => {
+    it('should filter balances in zero', () => {
         cy.intercept(
             'GET',
-            '/Transaction/Balance?PublicKey=null&FilterZeroBalances=false&PageNumber=1&PageSize=4',
+            '/Transaction/Balance?PublicKey=null&FilterZeroBalances=true&PageNumber=1&PageSize=4',
             {
               statusCode: 200,
               body: {
                 balances: [
                   {
-                    asset: 'usdc',
-                    amount: '0.0000000',
-                  },
-                  {
-                    asset: 'usdt',
+                    asset: 'ETH',
                     amount: '0.0002000',
                   },
                 ],
                 totalPages: 1,
               },
             },
-          ).as('getBalances');
-        cy.get('[data-cy=balance-card-usdc]').should('exist');
-        cy.get('[data-cy=balance-card-usdt]').should('exist');
-    });
-  });
-
-  describe('Filter balances', () => {
-    it('should filter balances in zero', () => {
+          ).as('getNonZeroBalances');
       cy.get('[data-cy=filter-balances]').check();
       cy.get('[data-cy=balance-card-btc]').should('not.exist');
     });
