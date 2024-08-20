@@ -16,7 +16,7 @@ const AuthWrapper = ({ children }: AuthWrapperProps) => {
     if (shouldRedirectToDashboard) {
       if (isAuthenticated) {
         router.push('/dashboard');
-      } else {
+      } else if (!isAuthenticated && currentUrl !== '/auth/login' && currentUrl !== '/auth/signup') {
         router.push('/auth/login');
       }
     } else if (!isAuthenticated) {
