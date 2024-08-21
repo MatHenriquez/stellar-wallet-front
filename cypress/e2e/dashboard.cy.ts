@@ -22,6 +22,11 @@ describe('Dashboard', () => {
         },
       },
     ).as('getBalances');
+
+    cy.intercept('GET', '/Auth/UserToken', {
+      statusCode: 200,
+      body: { data: true },
+    }).as('getUserToken');
   });
 
   describe('Balances', () => {
@@ -42,10 +47,10 @@ describe('Dashboard', () => {
     });
 
     it('should display the balances', () => {
-        cy.wait('@getBalances');
-        cy.wait(5000);
-        cy.get('[data-cy=balance-card-btc]').should('exist');
-        cy.get('[data-cy=balance-card-eth]').should('exist');
+      cy.wait('@getBalances');
+      cy.wait(5000);
+      cy.get('[data-cy=balance-card-btc]').should('exist');
+      cy.get('[data-cy=balance-card-eth]').should('exist');
     });
   });
 
@@ -84,7 +89,7 @@ describe('Dashboard', () => {
     });
 
     it('should display the correct current page and number of pages', () => {
-        cy.get('[data-cy=current-page]').should('have.text', 'Page 1 of 1');
+      cy.get('[data-cy=current-page]').should('have.text', 'Page 1 of 1');
     });
   });
 });
