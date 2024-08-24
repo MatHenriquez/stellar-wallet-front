@@ -46,6 +46,10 @@ describe('Dashboard', () => {
       cy.get('[data-cy=balances-pagination]').should('exist');
     });
 
+    it('should display the footer', () => {
+      cy.get('[data-cy=footer]').should('exist');
+    });
+
     it('should display the balances', () => {
       cy.wait('@getBalances');
       cy.wait(5000);
