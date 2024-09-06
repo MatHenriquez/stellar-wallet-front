@@ -56,6 +56,42 @@ describe('Dashboard', () => {
       cy.get('[data-cy=balance-card-btc]').should('exist');
       cy.get('[data-cy=balance-card-eth]').should('exist');
     });
+
+    it('should display the no balances message', () => {
+      cy.intercept(
+        'GET',
+        '/Transaction/Balance?PublicKey=null&FilterZeroBalances=false&PageNumber=1&PageSize=4',
+        {
+          statusCode: 200,
+          body: {
+            balances: [],
+            totalPages: 1,
+          },
+        },
+      ).as('getNoBalances');
+
+      cy.wait('@getNoBalances');
+      cy.get('[data-cy=no-balances-message]')
+        .should('exist')
+        .should('have.text', "You don't have any balance yet.");
+    });
+
+    it('should not display the pagination is there are no balances', () => {
+      cy.intercept(
+        'GET',
+        '/Transaction/Balance?PublicKey=null&FilterZeroBalances=false&PageNumber=1&PageSize=4',
+        {
+          statusCode: 200,
+          body: {
+            balances: [],
+            totalPages: 1,
+          },
+        },
+      ).as('getNoBalances');
+
+      cy.wait('@getNoBalances');
+      cy.get('[data-cy=balances-pagination]').should('not.exist');
+    });
   });
 
   describe('Filter balances', () => {
