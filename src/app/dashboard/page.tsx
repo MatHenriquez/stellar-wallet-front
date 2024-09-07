@@ -36,22 +36,30 @@ const Page = () => {
 
   return (
     <div className={styles.container} data-cy='balances-section'>
-      <h2 className={styles.title} data-cy="balances-title">Balances</h2>
+      <h2 className={styles.title} data-cy='balances-title'>
+        Balances
+      </h2>
       <span className='max-h-2'>
         {isLoading ? (
           <p>Loading your balances...</p>
         ) : (
           <>
-            <input
-              id='filter-balances'
-              type='checkbox'
-              checked={filterBalancesInZero}
-              onChange={() => setFilterBalancesInZero(!filterBalancesInZero)}
-              data-cy='filter-balances'
-            />
-            <label htmlFor='filter-balances' className='p-2 text-sm'>
-              Filter balances in zero
-            </label>
+            {balances.length > 0 ? (
+              <>
+                <input
+                  id='filter-balances'
+                  type='checkbox'
+                  checked={filterBalancesInZero}
+                  onChange={() => setFilterBalancesInZero(!filterBalancesInZero)}
+                  data-cy='filter-balances'
+                />
+                <label htmlFor='filter-balances' className='p-2 text-sm'>
+                  Filter balances in zero
+                </label>
+              </>
+            ) : (
+              <p data-cy="no-balances-message">You don&apos;t have any balance yet.</p>
+            )}
           </>
         )}
       </span>
@@ -64,7 +72,7 @@ const Page = () => {
           ),
         )}
       </div>
-      <Pagination page={page} setPage={setPage} totalPage={totalPages} />
+      {balances.length > 0 && <Pagination page={page} setPage={setPage} totalPage={totalPages} />}
     </div>
   );
 };
