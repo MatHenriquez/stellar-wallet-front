@@ -1,0 +1,16 @@
+{
+    "isSuccess": true,
+    "value": {
+        "balances": [
+            {
+                "asset": "ETH",
+                "amount": "0.0002000"
+            },
+            {
+                "asset": "BTC",
+                "amount": "0.0001000"
+            }
+        ]
+    },
+    "error": null
+}

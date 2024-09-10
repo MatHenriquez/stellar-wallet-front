@@ -7,25 +7,13 @@ describe('Dashboard', () => {
       '/Transaction/Balance?PublicKey=null&FilterZeroBalances=false&PageNumber=1&PageSize=4',
       {
         statusCode: 200,
-        body: {
-          balances: [
-            {
-              asset: 'BTC',
-              amount: '0.0000000',
-            },
-            {
-              asset: 'ETH',
-              amount: '0.0002000',
-            },
-          ],
-          totalPages: 1,
-        },
+        fixture: 'dashboard/balances.json',
       },
     ).as('getBalances');
 
     cy.intercept('GET', '/Auth/UserToken', {
       statusCode: 200,
-      body: { data: true },
+      fixture: 'dashboard/auth-token.json',
     }).as('getUserToken');
   });
 
@@ -39,6 +27,7 @@ describe('Dashboard', () => {
     });
 
     it('should display the filter balances checkbox', () => {
+      cy.wait('@getBalances');
       cy.get('[data-cy=filter-balances]').should('exist');
     });
 
@@ -63,10 +52,7 @@ describe('Dashboard', () => {
         '/Transaction/Balance?PublicKey=null&FilterZeroBalances=false&PageNumber=1&PageSize=4',
         {
           statusCode: 200,
-          body: {
-            balances: [],
-            totalPages: 1,
-          },
+          fixture: 'dashboard/no-balances.json',
         },
       ).as('getNoBalances');
 
@@ -82,10 +68,7 @@ describe('Dashboard', () => {
         '/Transaction/Balance?PublicKey=null&FilterZeroBalances=false&PageNumber=1&PageSize=4',
         {
           statusCode: 200,
-          body: {
-            balances: [],
-            totalPages: 1,
-          },
+          fixture: 'dashboard/no-balances.json',
         },
       ).as('getNoBalances');
 
@@ -101,15 +84,7 @@ describe('Dashboard', () => {
         '/Transaction/Balance?PublicKey=null&FilterZeroBalances=true&PageNumber=1&PageSize=4',
         {
           statusCode: 200,
-          body: {
-            balances: [
-              {
-                asset: 'ETH',
-                amount: '0.0002000',
-              },
-            ],
-            totalPages: 1,
-          },
+          fixture: 'dashboard/no-balances.json',
         },
       ).as('getNonZeroBalances');
 
