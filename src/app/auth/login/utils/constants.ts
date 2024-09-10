@@ -1,4 +1,5 @@
 import { ILoginUser } from '@/models/login-user';
+import { IErrorResponseBody } from '@/utils/interfaces/api-base-response';
 
 export const LoginInitialValues: ILoginUser = {
   email: '',
@@ -15,8 +16,14 @@ export class LoginRequest {
   }
 }
 
-export interface ILoginResponse {
+export interface ILoginResponseBody {
   success: boolean;
   token: string;
   publicKey: string;
+}
+
+export interface ILoginResponse {
+  value?: ILoginResponseBody;
+  isSuccessful: boolean;
+  error?: IErrorResponseBody;
 }
