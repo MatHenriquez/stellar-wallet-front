@@ -52,8 +52,8 @@ const LoginForm = () => {
 
               const responsePayload: ILoginResponse = response.data;
 
-              localStorage.setItem('ACCESS_TOKEN', responsePayload.token);
-              localStorage.setItem('PUBLIC_KEY', responsePayload.publicKey);
+              localStorage.setItem('ACCESS_TOKEN', responsePayload?.value?.token ?? '');
+              localStorage.setItem('PUBLIC_KEY', responsePayload?.value?.publicKey ?? '');
 
               router.push('/dashboard');
             })
@@ -76,7 +76,7 @@ const LoginForm = () => {
             <p className={styles.signInTitle} data-cy='title'>
               Login
             </p>
-            <SwapAuthLink 
+            <SwapAuthLink
               name='signup'
               link='/auth/signup'
               description='Don’t have an account?'

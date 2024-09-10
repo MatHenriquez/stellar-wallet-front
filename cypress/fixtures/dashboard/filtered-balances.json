@@ -1,0 +1,13 @@
+{
+    "isSuccess": true,
+    "value": {
+        "balances": [
+            {
+                "asset": "ETH",
+                "amount": "0.0002000"
+            }
+        ],
+        "totalPages": 1
+    },
+    "error": null
+}

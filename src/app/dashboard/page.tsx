@@ -23,8 +23,8 @@ const Page = () => {
         `/Transaction/Balance?PublicKey=${publicKey}&FilterZeroBalances=${filterBalancesInZero}&PageNumber=${page}&PageSize=${FIXED_PAGE_SIZE}`,
       )
       .then((response) => {
-        setBalances(response.data.balances);
-        setTotalPages(response.data.totalPages);
+        setBalances(response.data.value?.balances ?? []);
+        setTotalPages(response.data.value?.totalPages ?? 1);
       })
       .catch((error) => {
         console.error(error);

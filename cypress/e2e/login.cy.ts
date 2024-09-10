@@ -47,11 +47,7 @@ describe('Signup page', () => {
     it('should redirect to home page when form is submitted', () => {
       cy.intercept('POST', '/Auth/Login', {
         statusCode: 200,
-        body: {
-          success: true,
-          token: 'token',
-          publicKey: 'publicKey',
-        },
+        fixture: 'login/success.json',
       }).as('successfulLogin');
       cy.get('[data-cy=email-input]').type('valid@email.com');
       cy.get('[data-cy=password-input]').type('password');
