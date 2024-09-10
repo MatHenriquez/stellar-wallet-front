@@ -1,0 +1,9 @@
+{
+    "value": {
+        "success": true,
+        "token": "token",
+        "publicKey": "public_key"
+    },
+    "isSuccess": true,
+    "error": null
+}
