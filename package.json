@@ -10,7 +10,9 @@
     "format": "prettier --write .",
     "prepare": "husky",
     "cy:test": "cypress run",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+    "cy:coverage": "nyc cypress run",
+    "check-coverage": "nyc check-coverage"
   },
   "lint-staged": {
     "src/**/*.ts": [
@@ -24,21 +26,29 @@
   },
   "dependencies": {
     "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
     "formik": "^2.4.6",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
+    "sharp": "^0.33.5",
     "sonner": "^1.5.0",
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@cypress/code-coverage": "^3.13.1",
     "@eslint/js": "^9.8.0",
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "babel-plugin-istanbul": "^7.0.0",
     "css-loader": "^7.1.2",
-    "cypress": "^13.13.1",
+    "cypress": "^13.14.2",
     "daisyui": "^4.12.10",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.2.5",
@@ -47,6 +57,8 @@
     "eslint-plugin-react": "^7.35.0",
     "globals": "^15.8.0",
     "husky": "^9.1.4",
+    "istanbul-lib-coverage": "^3.2.2",
+    "istanbul-lib-instrument": "^6.0.3",
     "lint-staged": "^15.2.7",
     "postcss": "^8",
     "prettier": "^3.3.3",
