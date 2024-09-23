@@ -1,0 +1,19 @@
+{
+  "extends": "@istanbuljs/nyc-config-typescript",
+  "all": true,
+  "report-dir": "coverage",
+  "include": [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!src/**/*.{test,spec}.{js,jsx,ts,tsx}",
+    "!src/**/*.config.{js,ts}",
+    "!**/*.d.ts",
+    "!src/config/**/*"
+  ],
+  "reporter": ["text-summary", "json", "html"],
+  "instrumenter": "nyc",
+  "sourceMap": false,
+  "branches": 80,
+  "lines": 0,
+  "functions": 80,
+  "statements": 0
+}
