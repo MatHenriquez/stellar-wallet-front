@@ -1,1 +1,1 @@
-npm run check-coverage
+npm run cy:coverage
