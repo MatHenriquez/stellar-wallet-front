@@ -3,7 +3,7 @@
   "all": true,
   "report-dir": "coverage",
   "include": [
-    "src/**/*.{js,jsx,ts,tsx}",
+    "src/**/*.{tsx}",
     "!src/**/*.{test,spec}.{js,jsx,ts,tsx}",
     "!src/**/*.config.{js,ts}",
     "!**/*.d.ts",
