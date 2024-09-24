@@ -26,6 +26,17 @@ jobs:
       - name: NPM or Yarn install with caching
         uses: bahmutov/npm-install@v1.6.0
 
+      - name: Build application
+        run: npm run build
+
+      - name: Start application
+        run: npm start &
+        env:
+          NODE_ENV: test
+
+      - name: Wait for server to be ready
+        run: npx wait-on http://localhost:3000
+
       - name: Collect coverage
         run: npm run cy:coverage
 
