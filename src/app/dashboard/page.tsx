@@ -6,6 +6,8 @@ import { IBalance, IBalancesResponse } from './interfaces/balances-response.inte
 import BalanceCard from './components/BalanceCard';
 import Pagination from './components/Pagination';
 import LoadingBalance from './components/LoadingBalance';
+import { toast, Toaster } from 'sonner';
+import GetTestBalances from './components/GetTestBalances';
 
 const Page = () => {
   const [balances, setBalances] = useState<IBalance[]>([]);
@@ -14,8 +16,47 @@ const Page = () => {
   const [totalPages, setTotalPages] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const FIXED_PAGE_SIZE = 4;
+  const [isGettingTestBalances, setIsGettingTestBalances] = useState<boolean>(false);
+  const [isTestnet] = useState<boolean>(process.env.NEXT_PUBLIC_HORIZON_NETWORK === 'testnet');
 
-  useEffect(() => {
+  const getTestBalances = () => {
+    setIsGettingTestBalances(true);
+    toast.loading('Getting test balances...');
+
+    const publicKey = localStorage.getItem('PUBLIC_KEY');
+
+    axiosInstance
+      .post<IBalancesResponse>(
+        `/Transaction/TestFund`,
+        { PublicKey: publicKey },
+        { headers: { 'Content-Type': 'application/json' } },
+      )
+      .then(() => {
+        toast.dismiss();
+        toast.success('Test balances successfully added.', {
+          style: {
+            background: 'green',
+            color: 'white',
+          },
+        });
+        getBalances();
+      })
+      .catch((error) => {
+        toast.dismiss();
+        toast.error('An error occurred while getting test balances.', {
+          style: {
+            background: 'red',
+            color: 'white',
+          },
+        });
+        console.error(error);
+      })
+      .finally(() => {
+        setIsGettingTestBalances(false);
+      });
+  };
+
+  const getBalances = () => {
     setIsLoading(true);
     const publicKey = localStorage.getItem('PUBLIC_KEY');
     axiosInstance
@@ -28,14 +69,25 @@ const Page = () => {
       })
       .catch((error) => {
         console.error(error);
+        toast.error('An error occurred while fetching your balances.', {
+          style: {
+            background: 'red',
+            color: 'white',
+          },
+        });
       })
       .finally(() => {
         setIsLoading(false);
       });
+  };
+
+  useEffect(() => {
+    getBalances();
   }, [filterBalancesInZero, page]);
 
   return (
     <div className={styles.container} data-cy='balances-section'>
+      <Toaster position='top-right' data-cy="balances-toast"/>
       <h2 className={styles.title} data-cy='balances-title'>
         Balances
       </h2>
@@ -58,7 +110,14 @@ const Page = () => {
                 </label>
               </>
             ) : (
-              <p data-cy="no-balances-message">You don&apos;t have any balance yet.</p>
+              <div className={styles.noBalancesSection}>
+                <p data-cy='no-balances-message'>You don&apos;t have any balance yet.</p>
+                <GetTestBalances
+                  getTestBalances={getTestBalances}
+                  isLoading={isGettingTestBalances}
+                  isTesnet={isTestnet}
+                />
+              </div>
             )}
           </>
         )}
