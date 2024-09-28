@@ -1,0 +1,12 @@
+{
+    "isSuccess": true,
+    "value": {
+        "balances": [
+            {
+                "asset": "XLM",
+                "amount": "10000.0000000"
+            }
+        ]
+    },
+    "error": null
+}
