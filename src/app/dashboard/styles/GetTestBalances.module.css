@@ -1,0 +1,16 @@
+.getTestBalancesButton {
+    @apply btn btn-primary bg-main-blue-400 hover:bg-main-blue-200 text-main-blue-950 font-bold border-main-blue-800;
+    margin-top: 1rem;
+}
+
+.loadingButton, .loadingButton:hover {
+    @apply bg-main-blue-700;
+    font-weight: bold;
+    border-color: white;
+    color: white;
+    cursor: progress;
+    margin-top: 1rem;
+    width: 70%;
+    border-radius: 0.7rem;
+    padding: 0.8rem;
+}
