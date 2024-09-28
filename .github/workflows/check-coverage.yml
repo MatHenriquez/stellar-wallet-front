@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: ['*']
 
+env:
+  NEXT_PUBLIC_HORIZON_NETWORK: testnet
+
 jobs:
   check-coverage:
     runs-on: ubuntu-latest

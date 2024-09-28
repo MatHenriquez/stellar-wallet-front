@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: ['*']
 
+env:
+  NEXT_PUBLIC_HORIZON_NETWORK: testnet
+
 jobs:
   cypress-run:
     runs-on: ubuntu-22.04
