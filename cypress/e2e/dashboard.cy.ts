@@ -92,6 +92,7 @@ describe('Dashboard', () => {
         statusCode: 200,
         fixture: 'dashboard/test-balances.json',
       }).as('getBalances');
+      cy.wait('@getBalances');
 
       cy.get('[data-cy=balance-card-xlm]').should('exist');
     });
