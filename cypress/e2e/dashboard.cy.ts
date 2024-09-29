@@ -91,7 +91,9 @@ describe('Dashboard', () => {
       cy.intercept('GET', '/Transaction/Balance?PublicKey=null&FilterZeroBalances=false&PageNumber=1&PageSize=4', {
         statusCode: 200,
         fixture: 'dashboard/test-balances.json',
-      }).as('getBalances');
+      }).as('getTestBalances');
+
+      cy.wait('@getTestBalances');
 
       cy.get('[data-cy=balance-card-xlm]').should('exist');
     });
