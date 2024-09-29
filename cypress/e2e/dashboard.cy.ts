@@ -80,20 +80,23 @@ describe('Dashboard', () => {
         },
       ).as('getNoBalances');
 
+      cy.wait('@getNoBalances');
+
       cy.intercept('POST', '/Transaction/TestFund', {
         statusCode: 200,
       }).as('getTestBalances');
       
       cy.get('[data-cy=get-test-balances]').trigger('click');
+      cy.wait('@getTestBalances');
       
-      cy.visit('/dashboard');
-
       cy.intercept('GET', '/Transaction/Balance?PublicKey=null&FilterZeroBalances=false&PageNumber=1&PageSize=4', {
         statusCode: 200,
         fixture: 'dashboard/test-balances.json',
-      }).as('getTestBalances');
+      }).as('getBalances');
 
-      cy.wait('@getTestBalances');
+      cy.visit('/dashboard');
+
+      cy.wait('@getBalances');
 
       cy.get('[data-cy=balance-card-xlm]').should('exist');
     });
