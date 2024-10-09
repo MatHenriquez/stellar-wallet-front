@@ -4,7 +4,8 @@
         "balances": [
             {
                 "asset": "ETH",
-                "amount": "0.0002000"
+                "amount": "0.0002000",
+                "issuer": "someEthIssuer"
             }
         ],
         "totalPages": 1
