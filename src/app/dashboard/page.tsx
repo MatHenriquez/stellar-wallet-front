@@ -87,7 +87,7 @@ const Page = () => {
 
   return (
     <div className={styles.container} data-cy='balances-section'>
-      <Toaster position='top-right' data-cy="balances-toast"/>
+      <Toaster position='top-right' data-cy='balances-toast' />
       <h2 className={styles.title} data-cy='balances-title'>
         Balances
       </h2>
@@ -127,7 +127,12 @@ const Page = () => {
           isLoading ? (
             <LoadingBalance key={balance.asset} />
           ) : (
-            <BalanceCard key={balance.asset} asset={balance.asset} amount={balance.amount} />
+            <BalanceCard
+              key={balance.asset}
+              asset={balance.asset}
+              amount={balance.amount}
+              issuer={balance.issuer}
+            />
           ),
         )}
       </div>
