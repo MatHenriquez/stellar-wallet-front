@@ -8,6 +8,7 @@ export interface IBalancesResponseBody {
 export interface IBalance {
   asset: string;
   amount: string;
+  issuer: string;
 }
 
 export interface IBalancesResponse {
