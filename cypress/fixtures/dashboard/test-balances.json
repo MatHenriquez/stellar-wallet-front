@@ -4,7 +4,8 @@
         "balances": [
             {
                 "asset": "XLM",
-                "amount": "10000.0000000"
+                "amount": "10000.0000000",
+                "issuer": "native"
             }
         ]
     },

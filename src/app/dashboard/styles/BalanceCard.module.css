@@ -1,5 +1,5 @@
 .container {
-    @apply card w-80 h-44 bg-main-blue-950 opacity-90 hover:shadow-lg hover:shadow-main-blue-400;
+    @apply card w-80 h-52 bg-main-blue-950 opacity-90 hover:shadow-lg hover:shadow-main-blue-400;
 }
 
 .cardBody {
