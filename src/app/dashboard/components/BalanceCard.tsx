@@ -7,6 +7,7 @@ const BalanceCard = ({
   amount,
   paymentAssetName,
   setPaymentAssetName,
+  issuer,
 }: IBalanceCardProps) => {
   const [shouldOpenModal, setShouldOpenModal] = useState(false);
 
@@ -28,6 +29,7 @@ const BalanceCard = ({
       <div className={styles.cardBody}>
         <h2 className={styles.cardTitle}>Asset: {asset == 'native' ? 'XLM' : asset}</h2>
         <p>Amount: {amount}</p>
+        <p>Issuer: {issuer}</p>
         <div className={styles.cardAction}>
           <button className={styles.cardButton} onClick={handleSendClick}>
             Send
