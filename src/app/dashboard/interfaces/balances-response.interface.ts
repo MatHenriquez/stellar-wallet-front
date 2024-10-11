@@ -10,6 +10,11 @@ export interface IBalance {
   amount: string;
 }
 
+export interface IBalanceCardProps extends IBalance {
+  paymentAssetName: string;
+  setPaymentAssetName: React.Dispatch<React.SetStateAction<string>>;
+}
+
 export interface IBalancesResponse {
   value?: IBalancesResponseBody;
   isSuccess: boolean;
