@@ -8,6 +8,8 @@ import Pagination from './components/Pagination';
 import LoadingBalance from './components/LoadingBalance';
 import { toast, Toaster } from 'sonner';
 import GetTestBalances from './components/GetTestBalances';
+import { IPaymentPayload } from './interfaces/payment-payload.interface';
+import PaymentModal from './components/PaymentModal';
 
 const Page = () => {
   const [balances, setBalances] = useState<IBalance[]>([]);
@@ -18,6 +20,8 @@ const Page = () => {
   const FIXED_PAGE_SIZE = 4;
   const [isGettingTestBalances, setIsGettingTestBalances] = useState<boolean>(false);
   const [isTestnet] = useState<boolean>(process.env.NEXT_PUBLIC_HORIZON_NETWORK === 'testnet');
+  const [isSendingPayment, setIsSendingPayment] = useState<boolean>(false);
+  const [paymentAssetName, setPaymentAssetName] = useState<string>('');
 
   const getTestBalances = () => {
     setIsGettingTestBalances(true);
@@ -81,16 +85,59 @@ const Page = () => {
       });
   };
 
+  const sendPayment = async (values: IPaymentPayload) => {
+    setIsSendingPayment(true);
+
+    toast.loading('Sending payment...');
+
+    axiosInstance
+      .post('/Transaction/Payment', values)
+      .then(() => {
+        toast.dismiss();
+        getBalances();
+        toast.success('Payment sent successfully', {
+          position: 'top-right',
+          style: {
+            background: 'green',
+            color: 'white',
+          },
+        });
+      })
+      .catch((error) => {
+        toast.dismiss();
+        console.error(error?.response ?? error);
+        toast.error('There was an error sending your payment. Try again in a few minutes.', {
+          position: 'top-right',
+          style: {
+            background: 'red',
+            color: 'white',
+          },
+        });
+      })
+      .finally(() => {
+        setIsSendingPayment(false);
+        const dialog = document?.getElementById(
+          `payment-modal-${paymentAssetName}`,
+        ) as HTMLDialogElement | null;
+        dialog?.close();
+      });
+  };
+
   useEffect(() => {
     getBalances();
   }, [filterBalancesInZero, page]);
 
   return (
     <div className={styles.container} data-cy='balances-section'>
-      <Toaster position='top-right' data-cy="balances-toast"/>
+      <Toaster position='top-right' data-cy='balances-toast' />
       <h2 className={styles.title} data-cy='balances-title'>
         Balances
       </h2>
+      <PaymentModal
+        sendPayment={sendPayment}
+        isSendingPayment={isSendingPayment}
+        assetName={paymentAssetName}
+      />
       <span className='max-h-2'>
         {isLoading ? (
           <p>Loading your balances...</p>
@@ -127,7 +174,13 @@ const Page = () => {
           isLoading ? (
             <LoadingBalance key={balance.asset} />
           ) : (
-            <BalanceCard key={balance.asset} asset={balance.asset} amount={balance.amount} />
+            <BalanceCard
+              key={balance.asset}
+              asset={balance.asset}
+              amount={balance.amount}
+              paymentAssetName={paymentAssetName}
+              setPaymentAssetName={setPaymentAssetName}
+            />
           ),
         )}
       </div>
