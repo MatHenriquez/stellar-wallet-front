@@ -4,6 +4,7 @@
 
 .cardBody {
     @apply card-body;
+    word-wrap: break-word;
 }
 
 .cardTitle {
@@ -16,4 +17,8 @@
 
 .cardButton {
     @apply btn btn-primary bg-main-blue-400 hover:bg-main-blue-200 text-main-blue-950 font-bold border-main-blue-800
+}
+
+.issuer {
+    @apply text-xs;
 }
