@@ -2,7 +2,7 @@ import React from 'react';
 import PaymentForm from './PaymentForm';
 import { IPaymentProps } from '../interfaces/payments-props.interface';
 
-const PaymentModal = ({ sendPayment, isSendingPayment, assetName }: IPaymentProps) => {
+const PaymentModal = ({ sendPayment, isSendingPayment, assetName, assetIssuer }: IPaymentProps) => {
   return (
     <dialog id={`payment-modal-${assetName}`} className='modal modal-bottom sm:modal-middle'>
       <div className='modal-box bg-main-blue-900'>
@@ -13,6 +13,7 @@ const PaymentModal = ({ sendPayment, isSendingPayment, assetName }: IPaymentProp
                 sendPayment={sendPayment}
                 isSendingPayment={isSendingPayment}
                 assetName={assetName}
+                assetIssuer={assetIssuer}
               />
             </div>
         </div>

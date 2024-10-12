@@ -4,4 +4,5 @@ export interface IPaymentProps {
   sendPayment: (paymentPayload: IPaymentPayload) => Promise<void>;
   isSendingPayment: boolean;
   assetName: string;
+  assetIssuer: string;
 }
