@@ -5,31 +5,33 @@ import styles from '../styles/BalanceCard.module.css';
 const BalanceCard = ({
   asset,
   amount,
-  paymentAssetName,
-  setPaymentAssetName,
+  paymentAsset,
+  setPaymentAsset,
   issuer,
 }: IBalanceCardProps) => {
   const [shouldOpenModal, setShouldOpenModal] = useState(false);
 
   useEffect(() => {
     if (shouldOpenModal) {
-      const dialog = document?.getElementById(`payment-modal-${paymentAssetName}`) as HTMLDialogElement | null;
+      const dialog = document?.getElementById(
+        `payment-modal-${paymentAsset.code}`,
+      ) as HTMLDialogElement | null;
       dialog?.showModal();
       setShouldOpenModal(false);
     }
-  }, [paymentAssetName, shouldOpenModal]);
+  }, [paymentAsset, shouldOpenModal]);
 
   const handleSendClick = () => {
-    setPaymentAssetName(asset);
+    setPaymentAsset(asset);
     setShouldOpenModal(true);
   };
 
   return (
-    <div className={styles.container} data-cy={`balance-card-${asset.toLowerCase()}`}>
+    <div className={styles.container} data-cy={`balance-card-${asset.code?.toLowerCase()}`}>
       <div className={styles.cardBody}>
-        <h2 className={styles.cardTitle}>Asset: {asset == 'native' ? 'XLM' : asset}</h2>
+        <h2 className={styles.cardTitle}>Asset: {asset.code == 'native' ? 'XLM' : asset.code}</h2>
         <p>Amount: {amount}</p>
-        <p>Issuer: {issuer}</p>
+         <span className={styles.issuer}>Issuer: {issuer}</span>
         <div className={styles.cardAction}>
           <button className={styles.cardButton} onClick={handleSendClick}>
             Send
