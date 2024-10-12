@@ -1,3 +1,4 @@
+import { IAsset } from '@/app/auth/common/interfaces/asset.interface';
 import { IErrorResponseBody } from '@/utils/interfaces/api-base-response';
 
 export interface IBalancesResponseBody {
@@ -11,9 +12,12 @@ export interface IBalance {
   issuer: string;
 }
 
-export interface IBalanceCardProps extends IBalance {
-  paymentAssetName: string;
-  setPaymentAssetName: React.Dispatch<React.SetStateAction<string>>;
+export interface IBalanceCardProps {
+  asset: IAsset;
+  amount: string;
+  issuer: string;
+  paymentAsset: IAsset;
+  setPaymentAsset: React.Dispatch<React.SetStateAction<IAsset>>;
 }
 
 export interface IBalancesResponse {

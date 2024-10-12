@@ -3,4 +3,6 @@ export interface IPaymentPayload {
   destinationPublicKey: string;
   amount: number | '';
   memo?: string;
+  assetCode: string,
+  assetIssuer: string,
 }
