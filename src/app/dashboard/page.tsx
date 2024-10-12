@@ -10,6 +10,7 @@ import { toast, Toaster } from 'sonner';
 import GetTestBalances from './components/GetTestBalances';
 import { IPaymentPayload } from './interfaces/payment-payload.interface';
 import PaymentModal from './components/PaymentModal';
+import { IAsset } from '../auth/common/interfaces/asset.interface';
 
 const Page = () => {
   const [balances, setBalances] = useState<IBalance[]>([]);
@@ -21,7 +22,7 @@ const Page = () => {
   const [isGettingTestBalances, setIsGettingTestBalances] = useState<boolean>(false);
   const [isTestnet] = useState<boolean>(process.env.NEXT_PUBLIC_HORIZON_NETWORK === 'testnet');
   const [isSendingPayment, setIsSendingPayment] = useState<boolean>(false);
-  const [paymentAssetName, setPaymentAssetName] = useState<string>('');
+  const [paymentAsset, setPaymentAsset] = useState<IAsset>({} as IAsset);
 
   const getTestBalances = () => {
     setIsGettingTestBalances(true);
@@ -117,7 +118,7 @@ const Page = () => {
       .finally(() => {
         setIsSendingPayment(false);
         const dialog = document?.getElementById(
-          `payment-modal-${paymentAssetName}`,
+          `payment-modal-${paymentAsset.code}`,
         ) as HTMLDialogElement | null;
         dialog?.close();
       });
@@ -136,7 +137,8 @@ const Page = () => {
       <PaymentModal
         sendPayment={sendPayment}
         isSendingPayment={isSendingPayment}
-        assetName={paymentAssetName}
+        assetName={paymentAsset.code}
+        assetIssuer={paymentAsset.issuer}
       />
       <span className='max-h-2'>
         {isLoading ? (
@@ -174,13 +176,13 @@ const Page = () => {
           isLoading ? (
             <LoadingBalance key={balance.asset} />
           ) : (
-            <BalanceCard             
-              key={balance.asset}             
-              asset={balance.asset}             
+            <BalanceCard
+              key={balance.asset}
+              asset={{ code: balance.asset, issuer: balance.issuer } as IAsset}
               amount={balance.amount}
-              issuer={balance.issuer}           
-              paymentAssetName={paymentAssetName}
-              setPaymentAssetName={setPaymentAssetName}
+              issuer={balance.issuer}
+              paymentAsset={paymentAsset}
+              setPaymentAsset={setPaymentAsset}
             />
           ),
         )}
