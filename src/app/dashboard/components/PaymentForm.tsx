@@ -5,10 +5,12 @@ import { IPaymentProps } from '../interfaces/payments-props.interface';
 import styles from '../styles/PaymentForm.module.css';
 import { paymentSchema } from '../helpers/payment-schema';
 
-const PaymentForm = ({ sendPayment, isSendingPayment, assetName }: IPaymentProps) => {
+const PaymentForm = ({ sendPayment, isSendingPayment, assetName, assetIssuer }: IPaymentProps) => {
   const initialValues: IPaymentPayload = {
     destinationPublicKey: '',
     amount: '',
+    assetIssuer: '',
+    assetCode: '',
     memo: '',
   };
 
@@ -36,6 +38,8 @@ const PaymentForm = ({ sendPayment, isSendingPayment, assetName }: IPaymentProps
         validationSchema={paymentSchema}
         onSubmit={async (values, { setSubmitting }) => {
           setSubmitting(true);
+          values.assetIssuer = assetIssuer;
+          values.assetCode = assetName;
           await sendPayment(values);
           setSubmitting(false);
 
@@ -59,11 +63,13 @@ const PaymentForm = ({ sendPayment, isSendingPayment, assetName }: IPaymentProps
               onBlur={handleBlur}
               touched={touched.destinationPublicKey}
               value={values.destinationPublicKey}
+              data-cy='destination-public-key'
             />
             <ErrorMessage
               name='destinationPublicKey'
               component='p'
               className='text-sm text-red-500'
+              data-cy='destination-public-key-error'
             />
 
             <label htmlFor='amount'>Amount</label>
@@ -76,8 +82,14 @@ const PaymentForm = ({ sendPayment, isSendingPayment, assetName }: IPaymentProps
               onBlur={handleBlur}
               touched={touched.amount}
               value={values.amount}
+              data-cy='amount'
             />
-            <ErrorMessage name='amount' component='p' className='text-sm text-red-500' />
+            <ErrorMessage
+              name='amount'
+              component='p'
+              className='text-sm text-red-500'
+              data-cy='amount-error'
+            />
 
             <label htmlFor='memo'>Memo</label>
             <Field
@@ -89,8 +101,14 @@ const PaymentForm = ({ sendPayment, isSendingPayment, assetName }: IPaymentProps
               onBlur={handleBlur}
               touched={touched.memo}
               value={values.memo}
+              data-cy='memo'
             />
-            <ErrorMessage name='memo' component='p' className='text-sm text-red-500' />
+            <ErrorMessage
+              name='memo'
+              component='p'
+              className='text-sm text-red-500'
+              data-cy='memo-error'
+            />
 
             {!isSendingPayment ? (
               <>
@@ -117,7 +135,7 @@ const PaymentForm = ({ sendPayment, isSendingPayment, assetName }: IPaymentProps
                 </button>
               </>
             ) : (
-              <button className={styles.loadingButton} disabled>
+              <button className={styles.loadingButton} disabled data-cy='payment-loading-button'>
                 Loading...
               </button>
             )}
