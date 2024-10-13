@@ -1,5 +1,6 @@
 .container {
   @apply join;
+  margin-bottom: 1rem;
 }
 
 .prevNextButton {

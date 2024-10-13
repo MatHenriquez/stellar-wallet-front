@@ -1,15 +1,15 @@
 import React, { ReactNode } from 'react';
 import styles from './layout.module.css';
-import BrandTitle from './common/components/BrandTitle';
+import Header from '../header/components/Header';
 
-interface IAuthLayoutProps {
+interface IDashboardLayout {
   children: ReactNode;
 }
 
-export default function AuthLayout({ children }: Readonly<IAuthLayoutProps>) {
+export default function DashboardLayout({ children }: Readonly<IDashboardLayout>) {
   return (
     <div className={styles.container}>
-      <BrandTitle />
+      <Header />
       {children}
     </div>
   );

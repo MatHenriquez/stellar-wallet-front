@@ -1,5 +1,5 @@
 .container {
-    @apply card w-80 h-52 bg-main-blue-950 opacity-90 hover:shadow-lg hover:shadow-main-blue-400;
+    @apply card lg:w-80 lg:h-52 bg-main-blue-950 opacity-90 shadow-md shadow-main-blue-400 w-96 h-40;
 }
 
 .cardBody {
@@ -7,12 +7,10 @@
     word-wrap: break-word;
 }
 
-.cardTitle {
-    @apply card-title;
-}
-
 .cardAction {
-    @apply card-actions justify-end;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
 }
 
 .cardButton {
@@ -20,5 +18,11 @@
 }
 
 .issuer {
-    @apply text-xs;
+    @apply text-sm;
+}
+
+@media (max-width: 1200px) {
+    .cardAction {
+        top: 1.5rem;
+    }
 }

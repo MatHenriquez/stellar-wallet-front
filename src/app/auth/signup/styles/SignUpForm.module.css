@@ -31,7 +31,7 @@
   font-size: xx-large;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1200px) {
   .form {
     width: 100%;
   }

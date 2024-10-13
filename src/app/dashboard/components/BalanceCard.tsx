@@ -29,7 +29,7 @@ const BalanceCard = ({
   return (
     <div className={styles.container} data-cy={`balance-card-${asset.code?.toLowerCase()}`}>
       <div className={styles.cardBody}>
-        <h2 className={styles.cardTitle}>Asset: {asset.code == 'native' ? 'XLM' : asset.code}</h2>
+        <p>Asset: {asset.code == 'native' ? 'XLM' : asset.code}</p>
         <p>Amount: {amount}</p>
          <span className={styles.issuer}>Issuer: {issuer}</span>
         <div className={styles.cardAction}>

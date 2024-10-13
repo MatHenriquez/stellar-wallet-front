@@ -19,6 +19,10 @@ describe('Signup page', () => {
       cy.get('[data-cy=login-link]').should('exist');
     });
 
+    it('should not display the header', () => {
+      cy.get('[data-cy=header]').should('not.exist');
+    });
+
     it('should display the signup form with the correct fields', () => {
       cy.get('[data-cy=name-input]').should('exist');
       cy.get('[data-cy=name-label]').should('contain.text', 'Name:');
@@ -35,10 +39,7 @@ describe('Signup page', () => {
       cy.get('[data-cy=confirmPassword-input]').should('exist');
       cy.get('[data-cy=confirmPassword-label]').should('contain.text', 'Confirm Password:');
 
-      cy.get('[data-cy=optional-title]').should(
-        'contain.text',
-        "*Optional",
-      );
+      cy.get('[data-cy=optional-title]').should('contain.text', '*Optional');
 
       cy.get('[data-cy=publicKey-input]').should('exist');
       cy.get('[data-cy=publicKey-label]').should('contain.text', 'Public Key:');

@@ -248,4 +248,10 @@ describe('Dashboard', () => {
       });
     });
   });
+
+  describe('Header', () => {
+    it('should display the header', () => {
+      cy.get('[data-cy=header]').should('exist');
+    });
+  });
 });
