@@ -73,4 +73,10 @@ describe('Signup page', () => {
       cy.url().should('include', '/auth/signup');
     });
   });
+
+  describe('Header', () => {
+    it('should not display the header', () => {
+      cy.get('[data-cy=header]').should('not.exist');
+    });
+  });
 });
