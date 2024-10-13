@@ -2,11 +2,11 @@ import React, { ReactNode } from 'react';
 import styles from './layout.module.css';
 import BrandTitle from './common/components/BrandTitle';
 
-interface AuthLayoutProps {
+interface IAuthLayoutProps {
   children: ReactNode;
 }
 
-export default function AuthLayoutt({ children }: Readonly<AuthLayoutProps>) {
+export default function AuthLayout({ children }: Readonly<IAuthLayoutProps>) {
   return (
     <div className={styles.container}>
       <BrandTitle />
