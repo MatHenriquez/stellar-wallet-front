@@ -1,0 +1,27 @@
+{
+    "value": {
+        "payments": [
+            {
+                "id": "1",
+                "from": "GCBQNKXVTNMPAJICIZPAOOVZQJPNJUPPN7NUTYO5ZEL73JGI5I3TLRI7",
+                "to": "GCO3EGFHK6AGDW5AKA53IIBTSJUD44TILNHLLUC3FMVPFV3BWJQT5F3Q",
+                "amount": "100",
+                "asset": "ETH",
+                "createdAt": "2021-09-01T00:00:00.000Z",
+                "wasSuccessful": true
+            },
+            {
+                "id": "2",
+                "from": "GCBQNKXVTNMPAJICIZPAOOVZQJPNJUPPN7NUTYO5ZEL73JGI5I3TLRI7",
+                "to": "GCO3EGFHK6AGDW5AKA53IIBTSJUD44TILNHLLUC3FMVPFV3BWJQT5F3Q",
+                "amount": "100",
+                "asset": "ETH",
+                "createdAt": "2021-09-01T00:00:00.000Z",
+                "wasSuccessful": true
+            }
+        ],
+        "totalPages": 1
+    },
+    "isSuccess": true,
+    "error": ""
+}

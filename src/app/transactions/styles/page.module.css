@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 2rem 2rem;
+  align-items: center;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    margin: 0.5rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }  
+}

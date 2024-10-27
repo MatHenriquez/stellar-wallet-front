@@ -83,7 +83,7 @@ const Header = () => {
               </details>
             </li>
             <li>
-              <a className='hover:bg-main-blue-500'>Transactions</a>
+              <a href='/transactions' className='hover:bg-main-blue-500'>Transactions</a>
             </li>
           </ul>
         </div>
